@@ -118,6 +118,16 @@ button{font-family:inherit}
 .opt.wrong{border-color:var(--red);background:#fdeeee}
 .q .ans{font-size:var(--s-sm);color:#33404c}
 
+/* mission + credits */
+.mission{margin-top:56px;display:grid;gap:14px}
+.mission p{max-width:62ch}
+.mission .soft{padding:18px;border-radius:16px;background:var(--marble-soft);font-weight:500}
+.credits{margin-top:40px;padding-top:22px;border-top:8px solid var(--red);display:grid;gap:12px}
+.credits .who{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:baseline}
+.credits .who span{font-size:var(--s-xs);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.credits .who b{font-weight:800}
+.credits a.ig{font-weight:700;color:var(--ink)}
+
 /* finale */
 .finale{margin-top:64px;padding:28px 22px;background:var(--ink);color:#fff;border-radius:22px;display:grid;gap:14px}
 .finale h2{font-size:var(--s-xl);font-weight:800}
@@ -321,6 +331,23 @@ footer ul{margin:0;padding-left:18px;display:grid;gap:4px}
     <p>Скажи людині поруч: «Подивись, на стіні — тварина, старша за динозаврів». Знання росте, як мушля: кожна нова людина — нова камера.</p>
     <button class="btn" id="copyBtn" type="button">Скопіювати посилання</button>
     <p class="small" id="copyMsg" style="color:#9fb3c6"></p>
+  </section>
+
+  <section class="mission">
+    <div class="eyebrow">Місія</div>
+    <h2 class="sec-h">Тримайся за стале</h2>
+    <p>Цей проєкт про увагу. Поруч із нами є речі, які пережили мільйони років і досі тут.</p>
+    <p class="soft">Якщо ти на станції під час тривоги або не спиться вночі — спробуй знайти Амо. Коли фокус на сталому, триматися трохи легше. 🫂</p>
+    <p>Знаєш щось про амоніти чи знайшов нового на іншій станції? Поділись. Знання росте, коли ним діляться.</p>
+  </section>
+
+  <section class="credits">
+    <div class="eyebrow">Зроблено разом у Києві 🫰🏻</div>
+    <div class="who">
+      <span>Ідея</span><b>Валерія · <a class="ig" href="https://www.instagram.com/raskataygubu/" target="_blank" rel="noopener">@raskataygubu</a></b>
+      <span>Реалізація</span><b>Claude, Anthropic</b>
+    </div>
+    <p class="small">Надсилай фото своїх знахідок в Instagram.</p>
   </section>
 
   <footer>
