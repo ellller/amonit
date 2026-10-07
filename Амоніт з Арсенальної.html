@@ -1,0 +1,582 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Амоніт з Арсенальної</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap">
+<style>
+/* Layout: the story is a metro line. One vertical M1-red line runs down the page; each chapter is a stop. Clean white signage world, single light theme by choice. */
+:root{
+  color-scheme: light;
+  --bg:#ffffff;
+  --ink:#111417;
+  --muted:#6f8aa4;      /* the blue-grey of Latin station names */
+  --rule:#e3e9ef;
+  --red:#e4252b;        /* M1 */
+  --blue:#1e79c2;       /* M2 */
+  --green:#2ba24c;      /* M3 */
+  --marble:#e8b3a6;
+  --marble-soft:#f8ebe7;
+  --ok:#2ba24c;
+  --font:"Golos Text", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --s-xs:.8125rem; --s-sm:.9375rem; --s-md:1.0625rem; --s-lg:1.375rem; --s-xl:1.875rem; --s-hero:clamp(3rem,15vw,6rem);
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:var(--s-md);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:640px;margin:0 auto;padding-inline:20px;padding-block:0 48px}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.08}
+p{margin:0}
+a{color:var(--blue)}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:4px}
+
+/* top bar */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:18px;border-bottom:1px solid var(--rule)}
+.badge{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;color:#fff;font-weight:800;font-size:.8rem;flex:none}
+.b1{background:var(--red)}.b2{background:var(--blue)}.b3{background:var(--green)}
+.bar .where{display:flex;align-items:center;gap:10px;min-width:0}
+.bar .where b{font-weight:800;font-size:1.05rem;display:block;line-height:1.1}
+.bar .where small{color:var(--muted);font-size:var(--s-xs);display:block}
+.depth{font-size:var(--s-xs);color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.depth b{display:block;color:var(--ink);font-size:1.05rem}
+
+/* hero */
+.hero{padding-block:36px 28px;display:grid;gap:18px}
+.eyebrow{font-size:var(--s-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.hero h1{font-size:var(--s-hero);font-weight:900;letter-spacing:-.035em}
+.hero .lat{color:var(--muted);font-size:var(--s-lg);font-weight:500;margin-top:-6px}
+.hero canvas{width:100%;max-width:360px;aspect-ratio:1;justify-self:center}
+.lead{font-size:var(--s-lg);line-height:1.4;font-weight:500}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+.btn{appearance:none;border:0;border-radius:999px;padding:13px 20px;font-size:var(--s-sm);font-weight:700;cursor:pointer;background:var(--ink);color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn.red{background:var(--red)}
+.btn:active{transform:scale(.97)}
+
+/* line + stops */
+.line{position:relative;margin-top:24px;padding-left:38px}
+.line::before{content:"";position:absolute;left:11px;top:14px;bottom:14px;width:8px;background:var(--red);border-radius:4px}
+.stop{position:relative;padding-block:22px 30px}
+.stop::before{content:"";position:absolute;left:-36px;top:28px;width:18px;height:18px;border-radius:50%;background:#fff;border:5px solid var(--red)}
+.stop.big::before{left:-40px;top:24px;width:26px;height:26px;border-width:6px;border-color:var(--ink)}
+.stop .when{font-size:var(--s-xs);font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;font-variant-numeric:tabular-nums}
+.stop h2{font-size:var(--s-xl);font-weight:800;letter-spacing:-.02em;margin-top:6px}
+.stop .lat{color:var(--muted);font-size:var(--s-sm);margin-top:2px}
+.stop .body{display:grid;gap:12px;margin-top:14px;max-width:62ch}
+.thought{margin-top:16px;padding:16px 18px;background:var(--marble-soft);border-radius:14px;font-size:var(--s-md);font-weight:600;line-height:1.4;position:relative}
+.thought::before{content:"Амо думає";display:block;font-size:var(--s-xs);font-weight:600;color:#a8584a;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.fact{display:flex;gap:10px;align-items:flex-start;font-size:var(--s-sm);color:#3a4652}
+.fact .k{flex:none;font-weight:800;color:var(--ink);min-width:3.6em;font-variant-numeric:tabular-nums}
+
+/* builder */
+.panel{margin-top:16px;border:2px solid var(--ink);border-radius:18px;padding:16px;display:grid;gap:12px}
+.panel canvas{width:100%;aspect-ratio:1;max-width:320px;justify-self:center}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.counter{font-weight:800;font-size:var(--s-lg);font-variant-numeric:tabular-nums}
+.small{font-size:var(--s-xs);color:var(--muted)}
+
+/* time slider */
+.time input[type=range]{width:100%;accent-color:var(--red)}
+.time .out{min-height:5.6em}
+.time .yr{font-weight:900;font-size:var(--s-xl);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+
+/* hunt */
+.hunt{margin-top:56px}
+.sec-h{font-size:var(--s-xl);font-weight:800;letter-spacing:-.02em}
+.sec-lat{color:var(--muted);font-size:var(--s-sm);margin-top:2px}
+.slab{position:relative;margin-top:16px;border-radius:6px;overflow:hidden;box-shadow:0 0 0 1px var(--rule)}
+.slab canvas{display:block;width:100%;aspect-ratio:4/5;touch-action:manipulation;cursor:crosshair}
+.toast{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:9px 14px;border-radius:999px;font-size:var(--s-xs);font-weight:600;white-space:nowrap}
+
+/* stations checklist */
+.stations{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:0;border-top:1px solid var(--rule)}
+.st{display:grid;grid-template-columns:30px 1fr auto;gap:12px;align-items:start;padding-block:14px;border-bottom:1px solid var(--rule)}
+.st .nm{font-weight:800;font-size:1.1rem;line-height:1.15}
+.st .nm small{display:block;color:var(--muted);font-weight:500;font-size:var(--s-xs)}
+.st .hint{font-size:var(--s-sm);color:#3a4652;margin-top:6px}
+.st .tag{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;margin-top:6px;background:var(--marble-soft);color:#a8584a}
+.st .tag.sure{background:#e5f4ea;color:#1d7a37}
+.chk{appearance:none;width:30px;height:30px;border-radius:50%;border:2.5px solid var(--ink);display:grid;place-items:center;cursor:pointer;margin:0}
+.chk:checked{background:var(--ink)}
+.chk:checked::after{content:"";width:9px;height:15px;border:solid #fff;border-width:0 3px 3px 0;transform:translateY(-2px) rotate(45deg)}
+.progress{margin-top:14px;font-weight:700}
+.safety{margin-top:14px;padding:12px 14px;border-left:6px solid var(--red);background:#fff4f4;font-size:var(--s-sm);font-weight:500}
+
+/* now */
+.now{margin-top:56px}
+.cards{display:grid;gap:12px;margin-top:18px}
+.card{padding:18px;border-radius:16px;background:#f3f6f9;display:grid;gap:6px}
+.card h3{font-size:1.15rem;font-weight:800}
+.card p{font-size:var(--s-sm);color:#33404c}
+.card .n{font-size:var(--s-xs);font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* quiz */
+.quiz{margin-top:56px}
+.q{margin-top:18px;display:grid;gap:8px}
+.q p.qq{font-weight:700}
+.opt{appearance:none;text-align:left;border:2px solid var(--rule);background:#fff;border-radius:12px;padding:12px 14px;font-size:var(--s-sm);font-weight:500;cursor:pointer;color:var(--ink)}
+.opt.right{border-color:var(--green);background:#eaf6ee}
+.opt.wrong{border-color:var(--red);background:#fdeeee}
+.q .ans{font-size:var(--s-sm);color:#33404c}
+
+/* finale */
+.finale{margin-top:64px;padding:28px 22px;background:var(--ink);color:#fff;border-radius:22px;display:grid;gap:14px}
+.finale h2{font-size:var(--s-xl);font-weight:800}
+.finale p{color:#d9e1e8}
+.finale .btn{background:#fff;color:var(--ink);justify-self:start}
+
+footer{margin-top:48px;font-size:var(--s-xs);color:var(--muted);display:grid;gap:8px}
+footer ul{margin:0;padding-left:18px;display:grid;gap:4px}
+
+@media (min-width:720px){ .cards{grid-template-columns:1fr 1fr} }
+@media (prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important} }
+</style>
+
+<div class="wrap">
+  <header class="bar">
+    <div class="where">
+      <span class="badge b1" aria-hidden="true">M1</span>
+      <div><b>Арсенальна</b><small>Arsenalna</small></div>
+    </div>
+    <div class="depth"><b>105,5 м</b>під землею</div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Ти на станції. Він теж.</div>
+    <h1>Амоніт</h1>
+    <div class="lat">Ammonite · мешканець стіни</div>
+    <canvas id="heroAmmo" aria-label="Малюнок спіральної мушлі амоніта"></canvas>
+    <p class="lead">Поруч із тобою в камені живе історія, старша за динозаврів у твоїх дитячих книжках. Це амоніт. Назвімо його Амо. Він проїхав шлях від дна теплого океану до найглибшої станції Києва. Давай пройдемо його лінією.</p>
+    <div class="cta">
+      <a class="btn red" href="#story">Почати подорож ↓</a>
+      <a class="btn ghost" href="#hunt">Одразу шукати</a>
+    </div>
+  </section>
+
+  <section class="line" id="story" aria-label="Історія Амо">
+
+    <article class="stop">
+      <div class="when">≈ 160 млн років тому · океан Тетіс</div>
+      <h2>Маленьке яйце</h2>
+      <div class="lat">Station 1 · Egg</div>
+      <div class="body">
+        <p>Колись там, де зараз Карпати, хлюпав теплий океан Тетіс. Він розділяв два великі материки, а на його дні накопичувався червонуватий вапняковий мул.</p>
+        <p>Амо вилупився з яйця меншим за макове зернятко. Його перша мушля мала близько міліметра. Він дрейфував у товщі води разом із планктоном і нічого ще не знав про світ.</p>
+      </div>
+      <p class="thought">Усі великі мушлі колись були такими, що їх ніхто не помічав.</p>
+    </article>
+
+    <article class="stop">
+      <div class="when">Усе життя · будівництво</div>
+      <h2>Дім, що росте разом із тобою</h2>
+      <div class="lat">Station 2 · Growing home</div>
+      <div class="body">
+        <p>Амо жив в останній, найбільшій камері своєї мушлі. Коли ставало тісно, він добудовував попереду нову кімнату, переїжджав у неї, а позаду ставив перегородку.</p>
+        <p>Старі кімнати не пустували. Через тонку трубочку, сифон, Амо наповнював їх газом або рідиною і так піднімався чи опускався у воді, як маленький підводний човен.</p>
+      </div>
+      <div class="panel">
+        <canvas id="build" aria-label="Мушля, що росте"></canvas>
+        <div class="row">
+          <div><div class="counter"><span id="chN">8</span> камер</div><div class="small" id="chTxt">Амо ще підліток</div></div>
+          <div class="cta">
+            <button class="btn ghost" id="chReset" type="button">Спочатку</button>
+            <button class="btn" id="chAdd" type="button">Додати камеру</button>
+          </div>
+        </div>
+      </div>
+      <p class="thought">Ми не повертаємось у старі кімнати. Але саме вони тримають нас на плаву.</p>
+    </article>
+
+    <article class="stop">
+      <div class="when">Юрський період · щоденне життя</div>
+      <h2>Життя в синій воді</h2>
+      <div class="lat">Station 3 · Open sea</div>
+      <div class="body">
+        <p>З отвору мушлі в Амо визирали щупальця і дзьобоподібні щелепи. Його найближчі живі родичі сьогодні — восьминоги, кальмари й каракатиці.</p>
+        <p>Він полював на дрібних тваринок у воді і сам був обідом для іхтіозаврів та великих риб. Тому вмів швидко спливати і ховатися.</p>
+        <div class="fact"><span class="k">1–2 м</span><span>Такого діаметру сягали найбільші амоніти. Найбільший знайдений, з Німеччини, має близько 1,8 метра.</span></div>
+        <div class="fact"><span class="k">334 млн</span><span>Стільки років амоніти жили на Землі: приблизно з 400 до 66 мільйонів років тому.</span></div>
+      </div>
+      <p class="thought">Бути маленьким у великому морі не страшно, якщо знаєш, де твій дім.</p>
+    </article>
+
+    <article class="stop">
+      <div class="when">Кінець життя · тиша</div>
+      <h2>Тиша на дні</h2>
+      <div class="lat">Station 4 · Seabed</div>
+      <div class="body">
+        <p>Одного дня Амо не стало. Його мушля повільно опустилася на дно, у м’який червоний мул. М’яке тіло зникло, а камери поступово заповнилися осадом і кристалами.</p>
+        <p>Так закінчується історія більшості живих істот. Але історія Амо тут тільки починається.</p>
+      </div>
+      <p class="thought">Іноді те, що ми залишаємо по собі, живе довше, ніж ми самі.</p>
+    </article>
+
+    <article class="stop">
+      <div class="when">Мільйони років · тиск і час</div>
+      <h2>Стати каменем</h2>
+      <div class="lat">Station 5 · Stone</div>
+      <div class="body">
+        <p>Шар за шаром мул над Амо ставав товщим і важчим. Під тиском він перетворився на щільний вапняк, а оксиди заліза пофарбували його в рожево-червоний колір.</p>
+        <p>Геологи називають такий камінь мармуризованим вапняком. На вигляд він як мармур, а всередині повно залишків морського життя.</p>
+      </div>
+      <div class="panel time">
+        <label for="tl" class="small">Посунь повзунок і побач шлях у часі</label>
+        <input type="range" id="tl" min="0" max="7" step="1" value="0">
+        <div class="out" aria-live="polite">
+          <div class="yr" id="tlY"></div>
+          <p id="tlT"></p>
+        </div>
+      </div>
+      <p class="thought">Камінь — це просто дуже терпляча пам’ять.</p>
+    </article>
+
+    <article class="stop">
+      <div class="when">Десятки млн років тому · підйом</div>
+      <h2>З дна — на гору</h2>
+      <div class="lat">Station 6 · Mountains</div>
+      <div class="body">
+        <p>Африка повільно насувалася на Європу, і океан Тетіс зникав. Його дно зминалося в складки й піднімалося вгору. Так народилися Альпи, Карпати, Кавказ.</p>
+        <p>Амо, який жив на дні моря, опинився в горах Закарпаття. Без жодного руху з власного боку.</p>
+      </div>
+      <p class="thought">Ти можеш залишатися собою, а світ навколо зробить тебе вершиною.</p>
+    </article>
+
+    <article class="stop">
+      <div class="when">Середина ХХ століття · кар’єр</div>
+      <h2>Розріз</h2>
+      <div class="lat">Station 7 · Quarry</div>
+      <div class="body">
+        <p>Біля села Новоселиця на Закарпатті почали видобувати рожевий мармур. Камінь розпилювали на тонкі плити, і пилка випадково пройшла крізь мушлю Амо.</p>
+        <p>Так ми бачимо його всередині: спіраль і тонкі лінії перегородок між камерами. Якби розріз пройшов на сантиметр убік, ти б не помітив нічого.</p>
+      </div>
+      <p class="thought">Щоб побачити серце, іноді треба подивитися в розрізі.</p>
+    </article>
+
+    <article class="stop">
+      <div class="when">6 листопада 1960 · відкриття станції</div>
+      <h2>Арсенальна</h2>
+      <div class="lat">Station 8 · Arsenalna</div>
+      <div class="body">
+        <p>Плиту з Амо привезли до Києва й облицювали нею стіну нової станції метро. Арсенальна відкрилася в 1960 році у складі першої лінії. Вона лежить на глибині 105,5 метра — одна з найглибших станцій у світі.</p>
+        <p>Амо колись лежав на дні океану. Тепер він знову на глибині, тільки замість риб повз нього пропливають поїзди.</p>
+      </div>
+      <p class="thought">Іноді найдовша дорога веде туди, звідки ти почав. Тільки ти вже інший.</p>
+    </article>
+
+    <article class="stop big">
+      <div class="when">2026 · сьогодні</div>
+      <h2>Ти</h2>
+      <div class="lat">Station 9 · You</div>
+      <div class="body">
+        <p>Щодня повз Амо проходять тисячі людей. Майже ніхто його не помічає. Він чекав понад сто мільйонів років. Ти можеш подарувати йому одну хвилину.</p>
+        <p>Підніми очі від екрана. Подивись на рожеві плити. Знайди спіраль.</p>
+      </div>
+      <p class="thought">Найцікавіше зазвичай не кричить. Воно чекає, доки ти будеш уважним.</p>
+    </article>
+  </section>
+
+  <section class="hunt" id="hunt">
+    <div class="eyebrow">Тренування уважності</div>
+    <h2 class="sec-h">Знайди три амоніти на плиті</h2>
+    <div class="sec-lat">Find the ammonites</div>
+    <p style="margin-top:12px">Так виглядає мармур на стінах. Спіралі ховаються серед прожилок. Торкнися кожної, яку бачиш.</p>
+    <div class="slab">
+      <canvas id="slab" aria-label="Мармурова плита з прихованими амонітами"></canvas>
+      <div class="toast" id="slabToast">Знайдено 0 з 3</div>
+    </div>
+    <div class="cta" style="margin-top:12px">
+      <button class="btn ghost" id="slabHint" type="button">Підказка</button>
+      <button class="btn" id="slabNew" type="button">Нова плита</button>
+    </div>
+
+    <h2 class="sec-h" style="margin-top:44px">Тепер — справжні</h2>
+    <div class="sec-lat">Real fossils on Kyiv metro walls</div>
+    <p style="margin-top:12px">Познач станції, де ти вже знайшов скам’янілості. Позначки зберігаються лише на твоєму телефоні.</p>
+    <ul class="stations" id="stations"></ul>
+    <p class="progress" id="prog"></p>
+    <p class="safety">Шукай амонітів на колійних стінах тільки з безпечної відстані: не заходь за обмежувальну лінію і не нахиляйся над краєм платформи. Камінь чекав мільйони років — дочекається й тебе.</p>
+  </section>
+
+  <section class="now">
+    <div class="eyebrow">Що це дає нам зараз</div>
+    <h2 class="sec-h">Навіщо амоніт у 2026 році</h2>
+    <div class="sec-lat">Why it matters today</div>
+    <div class="cards">
+      <div class="card"><span class="n">Годинник</span><h3>Вони показують час Землі</h3><p>Види амонітів змінювалися дуже швидко. Тому геологи використовують їх як «керівні скам’янілості»: знайшов певний вид — і знаєш вік шару каменю. Це допомагає в розвідці корисних копалин і будівництві.</p></div>
+      <div class="card"><span class="n">Термометр</span><h3>Вони пам’ятають клімат</h3><p>У мушлях зберігаються ізотопи кисню. За ними науковці відновлюють температуру давніх морів і краще розуміють, як змінюється клімат сьогодні.</p></div>
+      <div class="card"><span class="n">Урок</span><h3>Вони пережили багато катастроф</h3><p>Амоніти пройшли крізь кілька масових вимирань, але 66 мільйонів років тому зникли разом із динозаврами. Їхні крихітні личинки жили в поверхневих водах, які найсильніше постраждали. Сьогодні вчені порівнюють це з тим, як закислення океану впливає на морське життя.</p></div>
+      <div class="card"><span class="n">Інженерія</span><h3>Вони вміли будувати</h3><p>Складні візерунки перегородок у мушлі, можливо, робили її міцнішою під тиском води. Науковці досі сперечаються про це, а інженери вивчають такі природні форми для легких і міцних конструкцій.</p></div>
+      <div class="card"><span class="n">Місто</span><h3>Вони роблять метро музеєм</h3><p>Київ щодня проводить людей повз справжні скам’янілості. Не треба квитка до музею. Достатньо однієї хвилини уважності між поїздами.</p></div>
+      <div class="card"><span class="n">Ти</span><h3>Вони вчать дивитись</h3><p>У світі, де все хоче твоєї уваги, амоніт нічого не просить. Саме тому зустріч із ним — маленька вправа на тишу.</p></div>
+    </div>
+  </section>
+
+  <section class="quiz" id="quiz">
+    <div class="eyebrow">Перевір себе</div>
+    <h2 class="sec-h">Три питання від Амо</h2>
+    <div id="qs"></div>
+  </section>
+
+  <section class="finale">
+    <h2>Покажи Амо комусь ще</h2>
+    <p>Скажи людині поруч: «Подивись, на стіні — тварина, старша за динозаврів». Знання росте, як мушля: кожна нова людина — нова камера.</p>
+    <button class="btn" id="copyBtn" type="button">Скопіювати посилання</button>
+    <p class="small" id="copyMsg" style="color:#9fb3c6"></p>
+  </section>
+
+  <footer>
+    <p>Освітній некомерційний проєкт. Не є офіційним ресурсом КП «Київський метрополітен». Візуальна мова навіяна схемою метро, розробленою агенцією «Агенти змін».</p>
+    <p>Факти зібрані з відкритих джерел. Точні місця скам’янілостей на станціях подано за свідченнями спостерігачів і журналістів, тож твоя знахідка може бути новою.</p>
+    <ul>
+      <li><a href="https://2plus2.ua/zateryannyj-mir/novyny/paleontolohiia-v-metro-de-na-stantsiiakh-kyieva-znaity-doistorychnykh-moliuskiv" target="_blank" rel="noopener">2+2: Палеонтологія в метро</a></li>
+      <li><a href="https://goloskarpat.info/society/606618291886d/" target="_blank" rel="noopener">Голос Карпат: Новоселицький кар’єр мармуру</a></li>
+      <li><a href="https://magnovskyi.livejournal.com/16940.html" target="_blank" rel="noopener">Метрополітенські амоніти (2011)</a></li>
+      <li><a href="https://24tv.ua/trends24/tsikavi-fakti-pro-metro-metro-kiyeva-mozhna-pobachiti-tvarin_n2728590" target="_blank" rel="noopener">24 канал: тварини часів динозаврів у метро</a></li>
+      <li><a href="https://vue.gov.ua/%D0%90%D0%BC%D0%BE%D0%BD%D1%96%D1%82%D0%B8_(Ammonoidea)" target="_blank" rel="noopener">ВУЕ: Амоніти (Ammonoidea)</a></li>
+      <li><a href="https://uk.wikipedia.org/wiki/%D0%90%D1%80%D1%81%D0%B5%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0_(%D1%81%D1%82%D0%B0%D0%BD%D1%86%D1%96%D1%8F_%D0%BC%D0%B5%D1%82%D1%80%D0%BE)" target="_blank" rel="noopener">Вікіпедія: Арсенальна</a></li>
+    </ul>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var css = getComputedStyle(document.documentElement);
+  function tok(n){ return css.getPropertyValue(n).trim(); }
+  var INK = tok('--ink') || '#111417';
+
+  /* ---------- ammonite drawing ---------- */
+  // Logarithmic spiral r = a * e^(b*t)
+  function drawAmmo(ctx, cx, cy, R, opts){
+    opts = opts || {};
+    var turns = opts.turns || 3.6;
+    var tMax = turns * Math.PI * 2;
+    var b = Math.log(2.4) / (2*Math.PI);           // whorl expansion per turn
+    var a = R / Math.exp(b * tMax);
+    var rot = opts.rot || 0;
+    var stroke = opts.stroke || INK;
+    var fill = opts.fill || 'transparent';
+    var lw = opts.lw || Math.max(1, R/45);
+    var chambers = opts.chambers || Math.round(turns*10);
+    var tStart = Math.max(0, tMax - (opts.drawTurns ? opts.drawTurns*2*Math.PI : tMax));
+    function P(t, k){ var r=a*Math.exp(b*t)*(k||1); return [cx + r*Math.cos(t+rot), cy + r*Math.sin(t+rot)]; }
+    ctx.save();
+    ctx.lineJoin='round'; ctx.lineCap='round';
+    // body fill (outer whorl)
+    ctx.beginPath();
+    for(var t=tStart; t<=tMax; t+=0.04){ var p=P(t); if(t===tStart) ctx.moveTo(p[0],p[1]); else ctx.lineTo(p[0],p[1]); }
+    for(var t2=tMax; t2>=Math.max(tStart, 0.0); t2-=0.04){ var q=P(t2-2*Math.PI); ctx.lineTo(q[0],q[1]); }
+    ctx.closePath();
+    ctx.fillStyle = fill; ctx.fill();
+    // spiral line
+    ctx.beginPath();
+    for(var t3=Math.max(0.2,tStart-2*Math.PI); t3<=tMax; t3+=0.03){ var s=P(t3); if(t3===Math.max(0.2,tStart-2*Math.PI)) ctx.moveTo(s[0],s[1]); else ctx.lineTo(s[0],s[1]); }
+    ctx.strokeStyle=stroke; ctx.lineWidth=lw; ctx.stroke();
+    // septa: curved walls between whorls; last chamber (body chamber, ~ half turn) left open
+    var bodyChamber = Math.PI*0.9;
+    var lastSept = tMax - bodyChamber;
+    var step = (lastSept - 2*Math.PI*0.6) / chambers;
+    for(var i=0;i<=chambers;i++){
+      var tt = lastSept - i*step;
+      if(tt < 2*Math.PI*0.6 || tt < tStart) break;
+      var o=P(tt), inn=P(tt-2*Math.PI);
+      var mx=(o[0]+inn[0])/2, my=(o[1]+inn[1])/2;
+      var dx=o[0]-inn[0], dy=o[1]-inn[1];
+      var nx=-dy*0.22, ny=dx*0.22;              // bow septa backwards
+      ctx.beginPath(); ctx.moveTo(o[0],o[1]);
+      ctx.quadraticCurveTo(mx-nx, my-ny, inn[0], inn[1]);
+      ctx.lineWidth = lw*0.7; ctx.stroke();
+    }
+    // shell mouth line
+    var m1=P(tMax), m2=P(tMax-2*Math.PI);
+    ctx.beginPath(); ctx.moveTo(m1[0],m1[1]); ctx.lineTo(m2[0],m2[1]); ctx.lineWidth=lw; ctx.stroke();
+    ctx.restore();
+  }
+
+  function fitCanvas(cv){
+    var dpr = Math.min(window.devicePixelRatio||1, 2.5);
+    var w = cv.clientWidth, h = cv.clientHeight;
+    cv.width = Math.round(w*dpr); cv.height = Math.round(h*dpr);
+    var ctx = cv.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0);
+    return {ctx:ctx,w:w,h:h};
+  }
+
+  /* ---------- hero ---------- */
+  var hero = document.getElementById('heroAmmo');
+  var heroT = 0, reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function drawHero(){
+    var f = fitCanvas(hero), c=f.ctx;
+    c.clearRect(0,0,f.w,f.h);
+    c.beginPath(); c.arc(f.w/2,f.h/2,f.w*0.47,0,Math.PI*2); c.fillStyle='#f8ebe7'; c.fill();
+    drawAmmo(c, f.w/2+f.w*0.02, f.h/2+f.h*0.02, f.w*0.38, {turns:3.8, rot:heroT, fill:'#e8b3a6', lw:2.2, chambers:34});
+  }
+  drawHero();
+  if(!reduce){
+    var start=null;
+    function spin(ts){ if(!start) start=ts; heroT = Math.sin((ts-start)/2600)*0.12; drawHero(); requestAnimationFrame(spin); }
+    requestAnimationFrame(spin);
+  }
+
+  /* ---------- builder ---------- */
+  var bcv = document.getElementById('build'), n = 8;
+  var stages = [[0,'Амо ще малюк'],[12,'Амо підліток'],[22,'Амо дорослий'],[32,'Амо мудрий старожил']];
+  function drawBuild(){
+    var f=fitCanvas(bcv), c=f.ctx; c.clearRect(0,0,f.w,f.h);
+    var turns = 1.4 + n*0.06;
+    var R = f.w*0.46 * Math.min(1, 0.32 + n/40);
+    drawAmmo(c, f.w/2, f.h/2, R, {turns:turns, chambers:n, fill:'#f3d3ca', lw:2});
+    document.getElementById('chN').textContent = n;
+    var label = stages[0][1]; stages.forEach(function(s){ if(n>=s[0]) label=s[1]; });
+    document.getElementById('chTxt').textContent = n>=40 ? 'Дім завершено. Час ставати легендою.' : label;
+  }
+  document.getElementById('chAdd').addEventListener('click', function(){ if(n<40){ n+=2; drawBuild(); } });
+  document.getElementById('chReset').addEventListener('click', function(){ n=2; drawBuild(); });
+  drawBuild();
+
+  /* ---------- timeline ---------- */
+  var TL = [
+    ['≈ 400 млн років тому','У морях з’являються перші амоніти. Динозаврів ще немає навіть у планах природи.'],
+    ['≈ 160 млн років тому','Юрський період. Амо живе в океані Тетіс.'],
+    ['≈ 150 млн років тому','Мушля Амо вже глибоко в мулі, який твердне на камінь.'],
+    ['66 млн років тому','Падіння астероїда. Зникають динозаври і всі амоніти. Мушля Амо — уже камінь.'],
+    ['≈ 30–10 млн років тому','Тетіс закривається, дно моря піднімається. Ростуть Карпати.'],
+    ['1950-ті','У Новоселиці на Закарпатті видобувають рожевий мармур для Києва.'],
+    ['1960','6 листопада відкривається Арсенальна. Амо займає своє місце на стіні.'],
+    ['2026','Ти тримаєш телефон і читаєш цей рядок. Амо — за кілька метрів від тебе.']
+  ];
+  var tl=document.getElementById('tl');
+  function showTL(){ var i=+tl.value; document.getElementById('tlY').textContent=TL[i][0]; document.getElementById('tlT').textContent=TL[i][1]; }
+  tl.addEventListener('input', showTL); showTL();
+
+  /* ---------- marble hunt ---------- */
+  var scv=document.getElementById('slab'), targets=[], found=0, toast=document.getElementById('slabToast');
+  function rnd(a,b){ return a+Math.random()*(b-a); }
+  function newSlab(){
+    var f=fitCanvas(scv), c=f.ctx, W=f.w, H=f.h;
+    var g=c.createLinearGradient(0,0,W,H);
+    g.addColorStop(0,'#e7b2a4'); g.addColorStop(.5,'#dc9c8d'); g.addColorStop(1,'#e9bcb0');
+    c.fillStyle=g; c.fillRect(0,0,W,H);
+    // cloudy blotches
+    for(var i=0;i<70;i++){
+      var x=rnd(0,W), y=rnd(0,H), r=rnd(10,70);
+      var rg=c.createRadialGradient(x,y,0,x,y,r);
+      var col = Math.random()<.5 ? '190,105,90' : '245,215,205';
+      rg.addColorStop(0,'rgba('+col+','+rnd(.15,.4)+')'); rg.addColorStop(1,'rgba('+col+',0)');
+      c.fillStyle=rg; c.beginPath(); c.arc(x,y,r,0,Math.PI*2); c.fill();
+    }
+    // nodules (decoys)
+    for(var j=0;j<38;j++){
+      c.beginPath(); c.ellipse(rnd(0,W),rnd(0,H),rnd(4,16),rnd(3,11),rnd(0,3),0,Math.PI*2);
+      c.fillStyle='rgba(170,85,72,'+rnd(.15,.35)+')'; c.fill();
+    }
+    // veins
+    for(var k=0;k<16;k++){
+      c.beginPath(); var x0=rnd(-20,W), y0=rnd(-20,H); c.moveTo(x0,y0);
+      c.bezierCurveTo(rnd(0,W),rnd(0,H),rnd(0,W),rnd(0,H),rnd(0,W+20),rnd(0,H+20));
+      c.strokeStyle= Math.random()<.6 ? 'rgba(255,240,235,'+rnd(.35,.7)+')' : 'rgba(140,60,50,'+rnd(.2,.4)+')';
+      c.lineWidth=rnd(.6,2.4); c.stroke();
+    }
+    // hidden ammonites
+    targets=[]; found=0;
+    var tries=0;
+    while(targets.length<3 && tries<200){
+      tries++;
+      var R=rnd(Math.min(W,H)*0.06, Math.min(W,H)*0.11);
+      var tx=rnd(R+8,W-R-8), ty=rnd(R+8,H-R-8);
+      if(targets.some(function(t){ return Math.hypot(t.x-tx,t.y-ty) < t.r+R+30; })) continue;
+      targets.push({x:tx,y:ty,r:R,f:false});
+      c.globalAlpha = rnd(.38,.55);
+      drawAmmo(c, tx, ty, R, {turns:3.2, rot:rnd(0,6.28), stroke:'#7a3a30', fill:'rgba(200,120,105,.35)', lw:Math.max(1,R/22), chambers:22});
+      c.globalAlpha = 1;
+    }
+    scv._base = c.getImageData(0,0,scv.width,scv.height);
+    updToast();
+  }
+  function ring(t, color){
+    var c=scv.getContext('2d');
+    c.beginPath(); c.arc(t.x,t.y,t.r*1.35,0,Math.PI*2); c.lineWidth=3; c.strokeStyle=color; c.stroke();
+  }
+  function updToast(msg){ toast.textContent = msg || ('Знайдено '+found+' з 3'); }
+  scv.addEventListener('click', function(e){
+    var r=scv.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top, hit=false;
+    targets.forEach(function(t){
+      if(!t.f && Math.hypot(t.x-x,t.y-y) < t.r*1.4){ t.f=true; found++; hit=true; ring(t,'#111417'); }
+    });
+    if(hit){ updToast(found===3 ? 'Усі три! Тепер спробуй на справжній стіні' : null); }
+    else if(found<3){ updToast('Це прожилка. Шукай спіраль'); setTimeout(function(){ updToast(); }, 1300); }
+  });
+  document.getElementById('slabNew').addEventListener('click', newSlab);
+  document.getElementById('slabHint').addEventListener('click', function(){
+    var t = targets.filter(function(t){ return !t.f; })[0]; if(!t) return;
+    var c=scv.getContext('2d'); c.save(); c.setLineDash([6,6]);
+    c.beginPath(); c.arc(t.x+rnd(-t.r*.5,t.r*.5), t.y+rnd(-t.r*.5,t.r*.5), t.r*3, 0, Math.PI*2);
+    c.lineWidth=2; c.strokeStyle='#1e79c2'; c.stroke(); c.restore();
+    updToast('Він десь у синьому колі');
+  });
+  newSlab();
+  var rz; window.addEventListener('resize', function(){ clearTimeout(rz); rz=setTimeout(function(){ drawBuild(); newSlab(); }, 250); });
+
+  /* ---------- stations ---------- */
+  var ST = [
+    {id:'arsenalna', b:'b1', l:'M1', n:'Арсенальна', lat:'Arsenalna', h:'Рожеві мармурові плити на колійних стінах. Спіральні перерізи амонітів.', t:'Головна станція', sure:true},
+    {id:'universytet', b:'b1', l:'M1', n:'Університет', lat:'Universytet', h:'Центральний зал, червоно-бурий камінь пілонів. Найбільший амоніт, близько 20 см, у нижньому лівому куті плити, де колись стояло погруддя. На інших стінах — белемніти, родичі кальмарів.', t:'Підтверджено', sure:true},
+    {id:'pecherska', b:'b3', l:'M3', n:'Печерська', lat:'Pecherska', h:'Шукай стебла викопних морських лілій — кругленькі «намистинки» в камені.', t:'Морські лілії', sure:true},
+    {id:'palatssportu', b:'b3', l:'M3', n:'Палац спорту', lat:'Palats Sportu', h:'Скам’янілості згадують в облицюванні вестибюля.', t:'Перевір сам', sure:false},
+    {id:'zhytomyrska', b:'b1', l:'M1', n:'Житомирська', lat:'Zhytomyrska', h:'Тут використали мармур із того самого Новоселицького кар’єру. Ніхто ще не описав тут амонітів — можливо, першим будеш ти.', t:'Перевір сам', sure:false},
+    {id:'shevchenka', b:'b2', l:'M2', n:'Тараса Шевченка', lat:'Tarasa Shevchenka', h:'Мармур з Новоселиці. Придивись до рожевих плит.', t:'Перевір сам', sure:false},
+    {id:'pozniaky', b:'b3', l:'M3', n:'Позняки', lat:'Pozniaky', h:'Мармур з Новоселиці. Придивись до рожевих плит.', t:'Перевір сам', sure:false}
+  ];
+  var saved={};
+  try{ saved = JSON.parse(localStorage.getItem('amo-found')||'{}') || {}; }catch(e){ saved={}; }
+  var ul=document.getElementById('stations');
+  ST.forEach(function(s){
+    var li=document.createElement('li'); li.className='st';
+    li.innerHTML='<span class="badge '+s.b+'" aria-hidden="true">'+s.l+'</span>'+
+      '<div><div class="nm">'+s.n+'<small>'+s.lat+'</small></div><p class="hint">'+s.h+'</p><span class="tag'+(s.sure?' sure':'')+'">'+s.t+'</span></div>'+
+      '<input type="checkbox" class="chk" id="st-'+s.id+'" aria-label="Знайшов на станції '+s.n+'">';
+    ul.appendChild(li);
+    var cb=li.querySelector('input'); cb.checked=!!saved[s.id];
+    cb.addEventListener('change', function(){ saved[s.id]=cb.checked; try{ localStorage.setItem('amo-found', JSON.stringify(saved)); }catch(e){} prog(); });
+  });
+  function prog(){
+    var k=ST.filter(function(s){ return saved[s.id]; }).length;
+    var msg = k===0 ? 'Поки жодної. Почни з Арсенальної.' :
+      k===1 ? 'Одна станція. Перша камера твоєї мушлі.' :
+      k<ST.length ? k+' станції з '+ST.length+'. Твоя мушля росте.' : 'Усі '+ST.length+'. Ти справжній палеонтолог метро.';
+    document.getElementById('prog').textContent = msg;
+  }
+  prog();
+
+  /* ---------- quiz ---------- */
+  var Q = [
+    {q:'Хто найближчий живий родич амоніта?', o:['Равлик','Восьминіг і кальмар','Морська черепаха'], a:1, e:'Амоніти — головоногі молюски, як восьминоги, кальмари й каракатиці.'},
+    {q:'Навіщо Амо порожні камери позаду?', o:['Зберігати їжу','Ховатися від хижаків','Регулювати плавучість'], a:2, e:'Газ і рідина в камерах допомагали підніматися й опускатися у воді.'},
+    {q:'Як мушля з дна моря потрапила в метро?', o:['Дно стало горами, камінь видобули в кар’єрі','Її знайшли під Києвом під час будівництва','Привезли з музею'], a:0, e:'Дно Тетісу піднялося в Карпати, а мармур із Новоселиці облицював станції.'}
+  ];
+  var qs=document.getElementById('qs');
+  Q.forEach(function(item, qi){
+    var d=document.createElement('div'); d.className='q';
+    var p=document.createElement('p'); p.className='qq'; p.textContent=(qi+1)+'. '+item.q; d.appendChild(p);
+    var ans=document.createElement('p'); ans.className='ans'; ans.setAttribute('aria-live','polite');
+    item.o.forEach(function(o, oi){
+      var b=document.createElement('button'); b.type='button'; b.className='opt'; b.textContent=o;
+      b.addEventListener('click', function(){
+        d.querySelectorAll('.opt').forEach(function(x){ x.classList.remove('right','wrong'); });
+        if(oi===item.a){ b.classList.add('right'); ans.textContent='Так! '+item.e; }
+        else { b.classList.add('wrong'); ans.textContent='Не зовсім. Спробуй ще.'; }
+      });
+      d.appendChild(b);
+    });
+    d.appendChild(ans); qs.appendChild(d);
+  });
+
+  /* ---------- share ---------- */
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    var url = location.href.split('#')[0], msg=document.getElementById('copyMsg');
+    function fallback(){ msg.textContent = url; }
+    try{
+      navigator.clipboard.writeText(url).then(function(){ msg.textContent='Посилання скопійовано'; }, fallback);
+    }catch(e){ fallback(); }
+  });
+})();
+</script>
+
+</body></html>
